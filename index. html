@@ -93,4 +93,284 @@ button{
   font-size:15px;
   color:#ff5c8a;
   line-height:1.7;
-  animation
+  animation:fadeUp .6s ease forwards;
+  white-space:pre-line;
+}
+
+.heart{
+  position:absolute;
+  font-size:18px;
+  animation:float 4s linear forwards;
+  opacity:.85;
+}
+
+@keyframes float{
+  0%{
+    transform:translateY(0) scale(1)
+  }
+  100%{
+    transform:translateY(-500px) scale(1.6);
+    opacity:0
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h1>هبوشتي💗</h1>
+
+  <h2 id="question"></h2>
+
+  <div class="buttons">
+    <button id="yes">نعم 🌸</button>
+    <button id="no">لا 🫥</button>
+  </div>
+
+  <div class="message" id="message"></div>
+
+</div>
+
+<script>
+
+const questions = [
+
+  "تبغيني كيما نبغيك 🙂💗 ؟؟",
+
+  "تقبلي تعيشي بلخبز ولما معايا 😂؟",
+
+  "تحبي تكوني خاضعة لي 🙂 (لا نقصر برك)",
+
+  "كيضانة بلي انتي اجمل بنوتة فلكون؟ 🙂😍",
+
+  "نبقاو طول العمر مع بعض؟ 🫂",
+
+  "تعرفي شحال مكانتك وقيمتك في قلبي ولا لا؟ ✨🐥",
+
+  "تقبلي نجي نبوسك يا زين من ديك لبلاصة؟ 🙂💋",
+
+  "تقبلي نكون طبيبك كي تولدي 😂😂😂😂؟ 🫶",
+
+  "هل مسعود مرنك شوي",
+
+  "تحسي بالامان (امان مشاعرك) ونتي معايا؟ 🫂",
+
+  "يعجبوك لورود؟ 🪷",
+
+  "مذكرة اول كلمة قلتهالك تع حب؟ 🧸",
+
+  "كاش نهار حلمتيني معاك ؟ 🙂😍",
+
+  "يعجبك مين نتقلق؟ 😂",
+
+  "ليامات لي ضاربنا فيهم كثر ملي متصالحين؟ 😂",
+
+  "تتخيلي فالمستقبل نسافرو بعيد؟ 🪩",
+
+  "تظني بلي رح نكون اب صالح؟ 🙂💋",
+
+  "هل هذي افضل علاقة دازت عليك؟",
+
+  "تظني انني نطيب خير منك 😂🙂؟",
+
+  "الا درنا كاش سباق تسبقيني (جايح علابالي) ؟ 🙂",
+
+  "يعجبك منين نزعق عليك؟ 🎀💗",
+
+  "كون جيت بيض و قصير نآتيريك 😂",
+
+  "عجبوك هاذ الاسئلة ولا والو (مراااااج علابالي) 🐼؟",
+
+  "فالاخير يادرا حميدة المبرمج حميدة الغوغل"
+
+];
+
+
+const responses = [
+
+  "تفو بلونك 🙂🦭",
+
+  "بابابابا تكسب راكي تاكلي فلكافيار",
+
+  "ننن نخليك تربحي هاذ المرة 🙃",
+
+  "اذن خليتي لخيار لبنتنا نشاله تديهالك 🙂😍",
+
+  "باللصقة فهمتي؟ 🙂 بلغراء نلصقك فيا هههه",
+
+  "بزااااااف كبيرة ♾️♾️♾️♾️",
+
+  "من حناكك مالك نتي تاني لبوسان وحرمتينا منو",
+
+  "نشوفها انا ولا طبيب خلاف 🙂 (نغير)",
+
+  "اودي ياسر شوفيها بينك بين روحك 😂",
+
+  "زيري سنتورة عمري راكي فامان",
+
+  "انا يعجبوني وعندي الاحلى فيهم ديتها 🪷🫵🏻😍",
+
+  "عمري ونتي كنتي تقولي لعمر وقيل 🫥",
+
+  "باينة لا بصح نا حلمتك",
+
+  "ذاك وش تحوسي 😂",
+
+  "جامي ضاربنا مشاءالله 🌚",
+
+  "تفوووو قالفال الشين يا لطيف",
+
+  "والو يا لكلبة صاحاصاحا 🙂🖕🏾",
+
+  "🙂🙂🙂🙂🙂🙂",
+
+  "باينة هذي ومنيش سامحلك كقي تاع الكوكيز",
+
+  "نخليك تسبقيني ✅ حميدة المتساهل",
+
+  "ويتك ويتك ويتك قبليها مني برك 🙃💋",
+
+  "باينة لا 🙃",
+
+  "من حقك جياحة صح هههه",
+
+  "نموت عليك 😂💗"
+
+];
+
+
+const finalMsg = `
+
+ربي يخليك لقلبي ديماا 💗
+يا هبوشتي يا حياتي كلها نتي 🎀💗
+يا قلبي يا عمري يا حياتي ياعيوني 😊💗
+
+إن شاء الله تاليتها مع بعض 💍💗
+نفوتوهاا بالمرة واللحلوة ان شاء الله 🌙🎀
+`;
+
+
+let index = 0;
+
+const questionEl = document.getElementById("question");
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+const message = document.getElementById("message");
+const buttons = document.querySelector(".buttons");
+
+
+questionEl.textContent = questions[index];
+
+
+noBtn.addEventListener("mouseover",()=>{
+
+  const x = Math.random()*160 - 80;
+  const y = Math.random()*160 - 80;
+
+  noBtn.style.transform =
+    `translate(${x}px,${y}px)`;
+
+});
+
+
+yesBtn.addEventListener("click",()=>{
+
+  index++;
+
+  if(index < questions.length){
+
+    questionEl.textContent =
+      questions[index];
+
+  }else{
+
+    buttons.style.display="none";
+    questionEl.style.display="none";
+
+    message.textContent =
+      finalMsg;
+
+    message.style.display="block";
+
+    hearts();
+
+  }
+
+});
+
+
+noBtn.addEventListener("click",()=>{
+
+  message.textContent =
+    responses[index];
+
+  message.style.display="block";
+
+
+  setTimeout(()=>{
+
+    index++;
+
+    if(index < questions.length){
+
+      questionEl.textContent =
+        questions[index];
+
+      message.style.display="none";
+
+    }else{
+
+      buttons.style.display="none";
+      questionEl.style.display="none";
+
+      message.textContent =
+        finalMsg;
+
+      message.style.display="block";
+
+      hearts();
+
+    }
+
+  },2500);
+
+});
+
+
+function hearts(){
+
+  for(let i=0;i<22;i++){
+
+    setTimeout(()=>{
+
+      const h =
+        document.createElement("div");
+
+      h.className="heart";
+
+      h.innerHTML="💗";
+
+      h.style.left =
+        Math.random()*100+"vw";
+
+      h.style.bottom="-20px";
+
+      document.body.appendChild(h);
+
+      setTimeout(
+        ()=>h.remove(),
+        4000
+      );
+
+    },i*160);
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>

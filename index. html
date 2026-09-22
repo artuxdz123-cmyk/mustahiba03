@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>love-page2 💗</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#ffd6e8,#fff0f6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.container{
+  background:#fff;
+  padding:28px 22px;
+  border-radius:22px;
+  box-shadow:0 15px 35px rgba(0,0,0,0.12);
+  text-align:center;
+  width:90%;
+  max-width:380px;
+  animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px)
+  }
+  to{
+    opacity:1;
+    transform:translateY(0)
+  }
+}
+
+h1{
+  color:#ff5c8a;
+  margin-bottom:10px;
+  font-size:24px;
+}
+
+h2{
+  color:#ff7fa3;
+  font-weight:500;
+  margin-bottom:26px;
+  font-size:17px;
+  line-height:1.6;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:16px;
+}
+
+button{
+  border:none;
+  padding:12px 22px;
+  border-radius:25px;
+  font-size:15px;
+  cursor:pointer;
+  transition:.25s ease;
+}
+
+#yes{
+  background:#ff5c8a;
+  color:#fff;
+}
+
+#yes:active{
+  transform:scale(.95);
+}
+
+#no{
+  background:#eee;
+  color:#666;
+  position:relative;
+}
+
+.message{
+  display:none;
+  margin-top:20px;
+  font-size:15px;
+  color:#ff5c8a;
+  line-height:1.7;
+  animation
